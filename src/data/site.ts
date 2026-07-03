@@ -50,8 +50,8 @@ export type CvGroup = {
 };
 
 export const profile = {
-  name: "Your Name",
-  chineseName: "你的姓名",
+  name: "Fang Xu",
+  chineseName: "方旭",
   role: {
     en: "Researcher in wireless systems and scientific AI",
     zh: "无线系统与科学智能方向研究者"
