@@ -1,0 +1,22 @@
+---
+import { researchAreas } from "../data/site";
+---
+
+<section class="section research-section" id="research" aria-labelledby="research-title">
+  <div class="section-inner">
+    <p class="section-kicker" data-en="Research Focus" data-zh="研究方向">Research Focus</p>
+    <h2 id="research-title" class="section-title" data-en="Future wireless systems, modeled across physics and intelligence." data-zh="从物理建模到智能系统，理解未来无线通信。">Future wireless systems, modeled across physics and intelligence.</h2>
+    <div class="research-grid">
+      {researchAreas.map((area) => (
+        <article class={`research-card ${area.emphasis === "primary" ? "is-primary" : ""}`}>
+          <p class="card-kicker" data-en={area.emphasis === "primary" ? "Core" : "Adjacent"} data-zh={area.emphasis === "primary" ? "核心" : "延展"}>{area.emphasis === "primary" ? "Core" : "Adjacent"}</p>
+          <h3 data-en={area.title.en} data-zh={area.title.zh}>{area.title.en}</h3>
+          <p data-en={area.summary.en} data-zh={area.summary.zh}>{area.summary.en}</p>
+          <ul class="tag-list">
+            {area.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

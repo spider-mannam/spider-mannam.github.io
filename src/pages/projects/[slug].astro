@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects } from "../../data/site";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout>
+  <section class="section detail-page">
+    <div class="section-inner">
+      <p class="section-kicker" data-en="Project Placeholder" data-zh="项目占位页">Project Placeholder</p>
+      <h1 class="section-title" data-en={project.title.en} data-zh={project.title.zh}>{project.title.en}</h1>
+      <p class="section-lede" data-en={project.outcome.en} data-zh={project.outcome.zh}>{project.outcome.en}</p>
+      <a class="button" href="/#projects" data-en="Back to projects" data-zh="返回项目">Back to projects</a>
+    </div>
+  </section>
+</BaseLayout>

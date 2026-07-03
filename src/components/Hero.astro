@@ -1,0 +1,28 @@
+---
+import SignalVisual from "./SignalVisual.astro";
+import { hero, profile } from "../data/site";
+---
+
+<section class="hero section" aria-labelledby="hero-title">
+  <div class="hero-inner section-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow" data-en={hero.eyebrow.en} data-zh={hero.eyebrow.zh}>{hero.eyebrow.en}</p>
+      <p class="hero-identity">
+        <span>{profile.name}</span>
+        <span>{profile.affiliation.en}</span>
+      </p>
+      <h1 id="hero-title" data-en={hero.title.en} data-zh={hero.title.zh}>{hero.title.en}</h1>
+      <p class="hero-description" data-en={hero.description.en} data-zh={hero.description.zh}>{hero.description.en}</p>
+      <ul class="hero-keywords" aria-label="Research keywords">
+        {hero.keywords.map((keyword) => <li>{keyword}</li>)}
+      </ul>
+      <div class="button-row hero-actions">
+        <a class="button primary" href="#publications" data-en="Publications" data-zh="论文">Publications</a>
+        <a class="button" href="#projects" data-en="Projects" data-zh="项目">Projects</a>
+        <a class="button" href="#cv" data-en="CV" data-zh="简历">CV</a>
+        <a class="button" href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+      </div>
+    </div>
+    <SignalVisual />
+  </div>
+</section>

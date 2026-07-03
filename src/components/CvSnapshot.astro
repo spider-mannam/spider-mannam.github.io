@@ -1,0 +1,27 @@
+---
+import { cvGroups, profile } from "../data/site";
+---
+
+<section class="section cv-section" id="cv" aria-labelledby="cv-title">
+  <div class="section-inner">
+    <p class="section-kicker" data-en="CV Snapshot" data-zh="简历概览">CV Snapshot</p>
+    <h2 id="cv-title" class="section-title" data-en="A compact academic profile, ready for real milestones." data-zh="紧凑的学术履历结构，等待填入真实经历。">A compact academic profile, ready for real milestones.</h2>
+    <div class="cv-grid">
+      {cvGroups.map((group) => (
+        <article class="cv-card">
+          <h3 data-en={group.title.en} data-zh={group.title.zh}>{group.title.en}</h3>
+          <div class="timeline">
+            {group.items.map((item) => (
+              <div class="timeline-item">
+                <time>{item.period}</time>
+                <strong data-en={item.title.en} data-zh={item.title.zh}>{item.title.en}</strong>
+                <p data-en={item.detail.en} data-zh={item.detail.zh}>{item.detail.en}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+    <a class="button disabled cv-button" aria-disabled="true" data-en="CV download coming soon" data-zh="简历下载即将补充">{profile.cv.label} download coming soon</a>
+  </div>
+</section>

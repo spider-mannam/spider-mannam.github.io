@@ -1,0 +1,19 @@
+---
+import { contact, profile } from "../data/site";
+---
+
+<section class="section contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="section-inner contact-panel">
+    <div>
+      <p class="section-kicker" data-en="Contact" data-zh="联系">Contact</p>
+      <h2 id="contact-title" data-en={contact.title.en} data-zh={contact.title.zh}>{contact.title.en}</h2>
+      <p data-en={contact.description.en} data-zh={contact.description.zh}>{contact.description.en}</p>
+    </div>
+    <div class="contact-links">
+      <a class="button primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+      {profile.links.map((link) => (
+        <a class={`button ${link.disabled ? "disabled" : ""}`} href={link.disabled ? undefined : link.href} aria-disabled={link.disabled ? "true" : "false"}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+</section>

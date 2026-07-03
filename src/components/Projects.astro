@@ -1,0 +1,30 @@
+---
+import { projects } from "../data/site";
+---
+
+<section class="section projects-section" id="projects" aria-labelledby="projects-title">
+  <div class="section-inner">
+    <p class="section-kicker" data-en="Research Projects" data-zh="研究项目">Research Projects</p>
+    <h2 id="projects-title" class="section-title" data-en="Project spaces ready for papers, code, and demos." data-zh="为论文、代码与演示预留的项目空间。">Project spaces ready for papers, code, and demos.</h2>
+    <div class="project-grid">
+      {projects.map((project) => (
+        <article class="project-card">
+          <p class="project-status" data-en={project.status.en} data-zh={project.status.zh}>{project.status.en}</p>
+          <h3 data-en={project.title.en} data-zh={project.title.zh}>{project.title.en}</h3>
+          <dl>
+            <dt data-en="Question" data-zh="问题">Question</dt>
+            <dd data-en={project.problem.en} data-zh={project.problem.zh}>{project.problem.en}</dd>
+            <dt data-en="Approach" data-zh="方法">Approach</dt>
+            <dd data-en={project.approach.en} data-zh={project.approach.zh}>{project.approach.en}</dd>
+            <dt data-en="Output" data-zh="产出">Output</dt>
+            <dd data-en={project.outcome.en} data-zh={project.outcome.zh}>{project.outcome.en}</dd>
+          </dl>
+          <ul class="tag-list">
+            {project.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+          <a class="text-link" href={`/projects/${project.slug}/`} data-en="View project placeholder" data-zh="查看项目占位页">View project placeholder</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

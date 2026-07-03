@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import { navItems, profile } from "../data/site";
+
+const title = "Academic Research Homepage";
+const description =
+  "Bilingual research homepage template for THz channel modeling, scientific AI, and embodied intelligence.";
+---
+
+<!doctype html>
+<html lang="en" data-locale="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Go to homepage">
+        <span class="brand-mark">THz</span>
+        <span>
+          <span class="brand-name">{profile.name}</span>
+          <span class="brand-subtitle" data-en={profile.role.en} data-zh={profile.role.zh}>{profile.role.en}</span>
+        </span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        {navItems.map((item) => (
+          <a href={item.href} data-en={item.label.en} data-zh={item.label.zh}>{item.label.en}</a>
+        ))}
+        <button class="language-toggle" type="button" aria-label="Switch language">
+          <span data-lang-label>中文</span>
+        </button>
+      </nav>
+    </header>
+    <main id="top">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        <span data-en="Built as a research homepage template." data-zh="个人研究主页模板。">
+          Built as a research homepage template.
+        </span>
+      </p>
+    </footer>
+    <script>
+      const html = document.documentElement;
+      const toggle = document.querySelector(".language-toggle");
+      const label = document.querySelector("[data-lang-label]");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".site-nav");
+
+      function applyLocale(locale) {
+        html.dataset.locale = locale;
+        html.lang = locale === "zh" ? "zh-CN" : "en";
+        document.querySelectorAll("[data-en][data-zh]").forEach((node) => {
+          node.textContent = node.dataset[locale];
+        });
+        if (label) label.textContent = locale === "en" ? "中文" : "EN";
+      }
+
+      toggle?.addEventListener("click", () => {
+        const next = html.dataset.locale === "en" ? "zh" : "en";
+        applyLocale(next);
+      });
+
+      menuToggle?.addEventListener("click", () => {
+        const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!expanded));
+        nav?.classList.toggle("is-open", !expanded);
+      });
+
+      nav?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle?.setAttribute("aria-expanded", "false");
+          nav.classList.remove("is-open");
+        });
+      });
+    </script>
+  </body>
+</html>

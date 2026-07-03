@@ -1,0 +1,41 @@
+---
+import { publicationEmptyState, publications } from "../data/site";
+---
+
+<section class="section" id="publications" aria-labelledby="publications-title">
+  <div class="section-inner">
+    <p class="section-kicker" data-en="Selected Publications" data-zh="代表论文">Selected Publications</p>
+    <h2 id="publications-title" class="section-title" data-en="Papers, preprints, and research artifacts." data-zh="论文、预印本与研究产出。">Papers, preprints, and research artifacts.</h2>
+    {publications.length === 0 ? (
+      <div class="empty-state">
+        <h3 data-en={publicationEmptyState.title.en} data-zh={publicationEmptyState.title.zh}>{publicationEmptyState.title.en}</h3>
+        <p data-en={publicationEmptyState.description.en} data-zh={publicationEmptyState.description.zh}>{publicationEmptyState.description.en}</p>
+        <div class="publication-skeleton" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    ) : (
+      <div class="publication-list">
+        {publications.map((paper) => (
+          <article class="publication-item">
+            <div>
+              <h3 data-en={paper.title.en} data-zh={paper.title.zh}>{paper.title.en}</h3>
+              <p class="publication-meta">{paper.authors} - {paper.venue} - {paper.year}</p>
+              <p data-en={paper.summary.en} data-zh={paper.summary.zh}>{paper.summary.en}</p>
+              <ul class="tag-list">
+                {paper.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            </div>
+            <div class="publication-links">
+              {paper.links.map((link) => (
+                <a class={`button ${link.disabled ? "disabled" : ""}`} href={link.disabled ? undefined : link.href} aria-disabled={link.disabled ? "true" : "false"}>{link.label}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

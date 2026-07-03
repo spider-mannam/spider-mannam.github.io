@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { publications } from "../../data/site";
+
+export function getStaticPaths() {
+  return publications.map((publication) => ({
+    params: { slug: publication.slug },
+    props: { publication }
+  }));
+}
+
+const { publication } = Astro.props;
+---
+
+<BaseLayout>
+  <section class="section detail-page">
+    <div class="section-inner">
+      <p class="section-kicker" data-en="Publication Placeholder" data-zh="论文占位页">Publication Placeholder</p>
+      <h1 class="section-title" data-en={publication.title.en} data-zh={publication.title.zh}>{publication.title.en}</h1>
+      <p class="section-lede">{publication.authors} - {publication.venue} - {publication.year}</p>
+      <a class="button" href="/#publications" data-en="Back to publications" data-zh="返回论文">Back to publications</a>
+    </div>
+  </section>
+</BaseLayout>

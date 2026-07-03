@@ -1,0 +1,17 @@
+<div class="signal-visual" aria-hidden="true">
+  <div class="signal-grid">
+    {Array.from({ length: 36 }).map((_, index) => (
+      <span class={`node node-${index + 1}`}></span>
+    ))}
+  </div>
+  <svg class="signal-lines" viewBox="0 0 420 320" role="img">
+    <path d="M40 220 C110 150, 170 245, 235 170 S340 110, 390 64"></path>
+    <path d="M52 76 C120 110, 170 92, 220 132 S318 232, 372 198"></path>
+    <path d="M82 270 C150 224, 208 252, 260 212 S330 160, 386 150"></path>
+  </svg>
+  <div class="signal-panel">
+    <span>0.1-10 THz</span>
+    <strong>Channel state</strong>
+    <small>Geometry - Materials - AI</small>
+  </div>
+</div>
